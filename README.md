@@ -1,12 +1,12 @@
 # 📦 MicroPython RC Switch Package
 
-This package contains an API to send signals over 433/315 Mhz based transmitters.
+This package contains an API to send signals over 433/315 MHz based transmitters.
 It is based on the [Arduino library](https://github.com/sui77/rc-switch) from Suat Özgür.
 
 ## 📖 Documentation
 For more information on the features of this library and how to use them please read the documentation [here](./docs/).
 
-## ✅ Supported Boards
+## ✅ Supported Microcontroller Boards
 
 Any board that can run a modern version of MicroPython is supported.
 The library uses bit banging and supports that on any available GPIO pin.
