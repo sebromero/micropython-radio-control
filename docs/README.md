@@ -20,4 +20,4 @@ transmitter.send("001110101101011101100010")
 
 The following scripts are examples of how to use this package with a transmitter module:
 
-- [transmit_ev1527.py](./examples/transmit_ev1527.py): Shows how to send data either as an integer or as a string consisting of ones and zeroes.
+- [transmit_ev1527.py](../examples/transmit_ev1527.py): Shows how to send data either as an integer or as a string consisting of ones and zeroes.
