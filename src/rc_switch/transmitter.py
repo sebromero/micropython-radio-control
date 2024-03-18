@@ -10,7 +10,7 @@ class Protocol:
         sync_pulses (int): The number of sync pulses to send before the data pulses.
         zero_pulses (int): The number of pulses to send for a '0' bit.
         one_pulses (int): The number of pulses to send for a '1' bit.
-        inverted_signal (bool): Indicates whether the signal should be inverted.
+        inverted_signal (bool): If true, interchange high and low logic levels in all transmissions.
     """
 
     def __init__(self, pulse_width_us, sync_pulses, zero_pulses, one_pulses, inverted_signal) -> None:
@@ -18,6 +18,14 @@ class Protocol:
         self.sync_pulses = sync_pulses
         self.zero_pulses = zero_pulses
         self.one_pulses = one_pulses
+         
+        # By default, this library assumes that any signals it sends or receives
+        # can be broken down into pulses which start with a high signal level,
+        # followed by a a low signal level (e.g. PT 2260).
+        #
+        # But some devices do it the other way around, and start with a low
+        # signal level, followed by a high signal level, e.g. the HT6P20B. To
+        # accommodate this, one can set invertedSignal to true.
         self.inverted_signal = inverted_signal
 
 protocols = [
@@ -28,8 +36,8 @@ protocols = [
     Protocol(500, (  6, 14 ), (  1,  2 ), (  2,  1 ), False ),    # protocol 5
     Protocol(450, ( 23,  1 ), (  1,  2 ), (  2,  1 ), True ),     # protocol 6 (HT6P20B)
     Protocol(150, (  2, 62 ), (  1,  6 ), (  6,  1 ), False ),    # protocol 7 (HS2303-PT, i. e. used in AUKEY Remote)
-    Protocol(200, (  3, 130), (  7, 16 ), (  3,  16), False ),     # protocol 8 Conrad RS-200 RX
-    Protocol(200, ( 130, 7 ), (  16, 7 ), ( 16,  3 ), True ),      # protocol 9 Conrad RS-200 TX
+    Protocol(200, (  3, 130), (  7, 16 ), (  3,  16), False ),    # protocol 8 Conrad RS-200 RX
+    Protocol(200, ( 130, 7 ), (  16, 7 ), ( 16,  3 ), True ),     # protocol 9 Conrad RS-200 TX
     Protocol(365, ( 18,  1 ), (  3,  1 ), (  1,  3 ), True ),     # protocol 10 (1ByOne Doorbell)
     Protocol(270, ( 36,  1 ), (  1,  2 ), (  2,  1 ), True ),     # protocol 11 (HT12E)
     Protocol(320, ( 36,  1 ), (  1,  2 ), (  2,  1 ), True )      # protocol 12 (SM5212)
