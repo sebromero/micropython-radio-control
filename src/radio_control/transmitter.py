@@ -1,33 +1,27 @@
 from machine import Pin
 import time
 import gc
+from collections import namedtuple
 
-class Protocol:
-    """
-    Represents a protocol for transmitting signals using RC switches.
+Protocol = namedtuple('Protocol', ['pulse_width_us', 'sync_pulses', 'zero_pulses', 'one_pulses', 'inverted_signal'])
+"""
+Represents a protocol for transmitting signals using RC switches.
 
-    Attributes:
-        pulse_width_us (int): The duration of each pulse in microseconds.
-        sync_pulses (int): The number of sync pulses to send before the data pulses.
-        zero_pulses (int): The number of pulses to send for a '0' bit.
-        one_pulses (int): The number of pulses to send for a '1' bit.
-        inverted_signal (bool): If true, interchange high and low logic levels in all transmissions.
-    """
+Attributes:
+    pulse_width_us (int): The duration of each pulse in microseconds.
+    sync_pulses (int): The number of sync pulses to send before the data pulses.
+    zero_pulses (int): The number of pulses to send for a '0' bit.
+    one_pulses (int): The number of pulses to send for a '1' bit.
+    inverted_signal (bool): If true, interchange high and low logic levels in all transmissions.
 
-    def __init__(self, pulse_width_us, sync_pulses, zero_pulses, one_pulses, inverted_signal) -> None:
-        self.pulse_width_us = pulse_width_us
-        self.sync_pulses = sync_pulses
-        self.zero_pulses = zero_pulses
-        self.one_pulses = one_pulses
-         
-        # By default, this library assumes that any signals it sends or receives
-        # can be broken down into pulses which start with a high signal level,
-        # followed by a a low signal level (e.g. PT 2260).
-        #
-        # But some devices do it the other way around, and start with a low
-        # signal level, followed by a high signal level, e.g. the HT6P20B. To
-        # accommodate this, one can set invertedSignal to true.
-        self.inverted_signal = inverted_signal
+By default, this library assumes that any signals it sends or receives
+can be broken down into pulses which start with a high signal level,
+followed by a a low signal level (e.g. PT 2260).
+
+But some devices do it the other way around, and start with a low
+signal level, followed by a high signal level, e.g. the HT6P20B. To
+accommodate this, one can set invertedSignal to true.
+"""
 
 protocols = [
     Protocol(350, (  1, 31 ), (  1,  3 ), (  3,  1 ), False ),    # protocol 1 (e.g. EV1527)
