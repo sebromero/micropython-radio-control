@@ -1,7 +1,7 @@
 {
     "urls": [
-      ["rc_switch/__init__.py", "github:sebromero/micropython-rc-switch/src/rc_switch/__init__.py"],
-      ["rc_switch/transmitter.py", "github:sebromero/micropython-rc-switch/src/rc_switch/transmitter.py"]
+      ["radio_control/__init__.py", "github:sebromero/micropython-radio-control/src/radio_control/__init__.py"],
+      ["radio_control/transmitter.py", "github:sebromero/micropython-radio-control/src/radio_control/transmitter.py"]
     ],
     "deps": [
     ],
