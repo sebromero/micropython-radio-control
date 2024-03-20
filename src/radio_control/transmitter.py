@@ -30,7 +30,7 @@ class Protocol:
         self.inverted_signal = inverted_signal
 
 protocols = [
-    Protocol(350, (  1, 31 ), (  1,  3 ), (  3,  1 ), False ),    # protocol 1 (EV1527)
+    Protocol(350, (  1, 31 ), (  1,  3 ), (  3,  1 ), False ),    # protocol 1 (e.g. EV1527)
     Protocol(650, (  1, 10 ), (  1,  2 ), (  2,  1 ), False ),    # protocol 2
     Protocol(100, ( 30, 71 ), (  4, 11 ), (  9,  6 ), False ),    # protocol 3
     Protocol(380, (  1,  6 ), (  1,  3 ), (  3,  1 ), False ),    # protocol 4
