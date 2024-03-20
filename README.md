@@ -2,6 +2,11 @@
 
 This package contains an API to send signals over 433/315 MHz based transmitters.
 It is based on the [Arduino library](https://github.com/sui77/rc-switch) from Suat Özgür.
+This is a simple library that is meant to be easy to install and use.
+If it doesn't fit your use case there is some related work you may want to check out:
+
+- https://github.com/AdrianCX/pico433mhz
+- https://github.com/peterhinch/micropython_remote
 
 ## 📖 Documentation
 For more information on the features of this library and how to use them please read the documentation [here](./docs/).
