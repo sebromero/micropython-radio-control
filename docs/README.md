@@ -12,7 +12,7 @@ You can adjust `pulse_width_us` to match your specific receiver. `num_retransmis
 
 ```py
 from radio_control import Transmitter
-transmitter = Transmitter("D2", pulse_width_us=315, num_retransmissions=5)
+transmitter = Transmitter("D2", pulse_width_us=315, protocol=1, num_retransmissions=5)
 transmitter.send("001110101101011101100010")
 ```
 
