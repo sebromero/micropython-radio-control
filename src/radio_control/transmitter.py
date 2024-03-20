@@ -65,17 +65,17 @@ class Transmitter:
         else:
             self.transmitter_pin = Pin(pin, Pin.OUT)
 
-        if pulse_width_us is None:
-            self.pulse_width_us = protocol.pulse_width_us
-        else:
-            self.pulse_width_us = pulse_width_us
-
         # Allow to inject a custom Protocol object
         if isinstance(protocol, Protocol):
             self.protocol = protocol
         else:
             self.protocol = protocols[protocol - 1]
-            
+
+        if pulse_width_us is None:
+            self.pulse_width_us = self.protocol.pulse_width_us
+        else:
+            self.pulse_width_us = pulse_width_us
+
         self.num_retransmissions = num_retransmissions
 
     @micropython.native
