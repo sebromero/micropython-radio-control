@@ -9,6 +9,17 @@ If it doesn't fit your use case there is some related work you may want to check
 - https://github.com/peterhinch/micropython_remote
 
 ## 📖 Documentation
+
+Minimal example for sending a signal:
+
+```py
+from radio_control import Transmitter
+transmitter = Transmitter("D2") # Transmitter connected to pin D2
+transmitter.send("001110101101011101100010") # Send 24bit code retrieved from remote control
+```
+
+By default the transmitter uses a protocol that works for many low cost remote control devices such as rc sockets (e.g. using the popular EV1527 encoder).
+The protocol that shall be used can be changed through a parameter in the constructor.
 For more information on the features of this library and how to use them please read the documentation [here](./docs/).
 
 ## ✅ Supported Microcontroller Boards
