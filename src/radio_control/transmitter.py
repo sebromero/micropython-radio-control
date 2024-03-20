@@ -45,7 +45,7 @@ class Transmitter:
     Properties:
         transmitter_pin: The pin used for transmitting data.
         pulse_width_us: The pulse width in microseconds.
-        protocol: The protocol used for transmitting data.
+        protocol: The protocol used for transmitting data. Either the protocol number or a custom Protocol object
         num_retransmissions: The number of times to retransmit the data.
     """
 
