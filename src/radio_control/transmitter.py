@@ -70,7 +70,12 @@ class Transmitter:
         else:
             self.pulse_width_us = pulse_width_us
 
-        self.protocol = protocols[protocol - 1]
+        # Allow to inject a custom Protocol object
+        if isinstance(protocol, Protocol):
+            self.protocol = protocol
+        else:
+            self.protocol = protocols[protocol - 1]
+            
         self.num_retransmissions = num_retransmissions
 
     @micropython.native
