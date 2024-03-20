@@ -1,4 +1,4 @@
-# 📦 MicroPython RC Switch Package
+# 📦 MicroPython Radio Control Package
 
 This package contains an API to send signals over 433/315 MHz based transmitters.
 It is based on the [Arduino library](https://github.com/sui77/rc-switch) from Suat Özgür.
@@ -13,7 +13,7 @@ The library uses bit banging and supports that on any available GPIO pin.
 
 ## ⚙️ Installation
 
-The easiest way is to use mpremote and mip: `mpremote mip install github:sebromero/micropython-rc-switch`
+The easiest way is to use mpremote and mip: `mpremote mip install github:sebromero/micropython-radio-control`
 
 ## 🧑‍💻 Developer Installation
 
@@ -26,7 +26,7 @@ The recommended way is to mount the root directory remotly on the board and then
 
 ## 🐛 Reporting Issues
 
-If you encounter any issue, please open a bug report [here](https://github.com/sebromero/micropython-rc-switch/issues). 
+If you encounter any issue, please open a bug report [here](https://github.com/sebromero/micropython-radio-control/issues). 
 
 ## 💪 Contributing
 

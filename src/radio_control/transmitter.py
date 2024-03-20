@@ -1,5 +1,6 @@
 from machine import Pin
 import time
+import gc
 
 class Protocol:
     """
@@ -78,6 +79,7 @@ class Transmitter:
         self.protocol = protocols[protocol - 1]
         self.num_retransmissions = num_retransmissions
 
+    @micropython.native
     def transmit_pulses(self, pulses):
         """
         Transmits a sequence of pulses specified by the given tuple.
@@ -99,12 +101,14 @@ class Transmitter:
 
         high_pulse_width = self.pulse_width_us * pulses[0]
         low_pulse_width = self.pulse_width_us * pulses[1]
+        transmitter_pin = self.transmitter_pin # Cache object to avoid attribute lookups
 
-        self.transmitter_pin.value(first_logic_level)
+        transmitter_pin.value(first_logic_level)
         time.sleep_us(high_pulse_width)
-        self.transmitter_pin.value(second_logic_level)
+        transmitter_pin.value(second_logic_level)
         time.sleep_us(low_pulse_width)
 
+    @micropython.native
     def send_data(self, data, length, msb_first=True):
         """
         Sends data using the specified protocol.
@@ -128,13 +132,14 @@ class Transmitter:
             else:
                 self.transmit_pulses(self.protocol.zero_pulses)
 
+    @micropython.native
     def send(self, data, length=None):
         """
         Sends data multiple times using the specified protocol.
 
         Args:
-            data: The data to be sent. Can be either an integer or a binary string.
-            length: The number of bits in the data. Required if data is a binary string.
+            data: The data to be sent. Can be either an integer or a binary string (e.g. "1011").
+            length: The number of bits in the data. Required unless data is a binary string.
 
         """
         if isinstance(data, str):
@@ -142,9 +147,11 @@ class Transmitter:
             data = int(data, 2)
 
         for _ in range(self.num_retransmissions):
+            gc.collect() # Avoid gargabe collection during transmission
+
             # The https://github.com/sui77/rc-switch library sends the sync pulses after the data pulses
             # but e.g. the EV1527 protocol wants the sync pulses to be sent before the data pulses (preamble)
-            # However, sending the data pulses first seems to work with 2 retransmissions
+            # However, sending the data pulses first seems to work with >=2 retransmissions
             # while sending the sync pulses first seems to work with >= 3 retransmissions
             self.send_data(data, length)
             self.transmit_pulses(self.protocol.sync_pulses)

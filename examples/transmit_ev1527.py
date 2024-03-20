@@ -1,4 +1,4 @@
-from rc_switch import Transmitter
+from radio_control import Transmitter
 
 # Example usage with adjustable pulse width and number of retransmissions
 # By default, the transmitter will use protocol 1 (EV1527)
