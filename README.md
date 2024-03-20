@@ -13,14 +13,17 @@ The library uses bit banging and supports that on any available GPIO pin.
 
 ## ⚙️ Installation
 
-The easiest way is to use mpremote and mip: `mpremote mip install github:sebromero/micropython-radio-control`
+The easiest way is to use mpremote and mip: 
+```bash
+mpremote mip install github:sebromero/micropython-radio-control
+```
 
 ## 🧑‍💻 Developer Installation
 
 The easiest way is to clone the repository and then run any example using `mpremote`.
 The recommended way is to mount the root directory remotly on the board and then running an example script. e.g.
 
-```
+```bash
  mpremote connect mount src run ./examples/transmit_ev1527.py
 ```
 
