@@ -145,6 +145,9 @@ class Transmitter:
             length = len(data)
             data = int(data, 2)
 
+        if isinstance(data, int) and length is None:
+            raise ValueError("Length must be specified when sending an integer.")
+
         for _ in range(self.num_retransmissions):
             gc.collect() # Avoid gargabe collection during transmission
 
