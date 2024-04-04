@@ -9,13 +9,14 @@ This library supports transmitting signals over a sub 1GHz signal (433 / 315 MHz
 To use this library you can import the `Transmitter` class from the main module.
 Then you need to initialize the transmitter object which allows you to send signals.
 You can adjust `pulse_width_us` to match your specific receiver. `num_retransmissions` can be increased to improve the robustness of the signal transmission. You need to specify to which pin your transmitter is connected. This can be either a string or a `Pin` object.
-You can either send a command as a string consisting of bits or as an integer. In the latter case you need to specify the amount of bits (leading zeroes would be omitted otherwise).
+
+You can either send a command as a string consisting of ones and zeroes or as an integer. In the latter case you need to specify the amount of bits (leading zeroes would be omitted otherwise).
 
 ```py
 from radio_control import Transmitter
 transmitter = Transmitter("D2", pulse_width_us=315, protocol=1, num_retransmissions=5)
 transmitter.send("001110101101011101100010") # Send as string
-transmitter.send(3856226, 24) # Send as integer
+transmitter.send(3856226, 24) # Send as integer (24 bit)
 ```
 
 ## 📡 Protocols
